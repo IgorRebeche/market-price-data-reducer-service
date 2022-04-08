@@ -30,5 +30,37 @@ namespace Application.UseCases.CreateCandlestick
             });
             throw new NotImplementedException();
         }
+
+        private Task processCandles(Timeframe timeframe, Ticker[] tickers) {
+
+            int temporaryTimebox = 0;
+            List<Candle> candles = new List<Candle>();
+            
+            foreach (var ticker in tickers) 
+            {
+                int actualCandle = candles.Count() - 1;
+                // Pegar tickers dentro do timebox
+                if (timeframe.TimeframeInSeconds == temporaryTimebox) 
+                { 
+                    candles.Add(new Candle());
+                    candles[actualCandle].OpenPrice = ticker.Price;
+                    actualCandle = candles.Count() - 1;
+                    temporaryTimebox = 0;
+                }
+
+                if (candles[actualCandle].HighPrice < ticker.Price) 
+                {
+                    candles[actualCandle].HighPrice = ticker.Price;
+                }
+
+                if (candles[actualCandle].LowPrice > ticker.Price)
+                {
+                    candles[actualCandle].LowPrice = ticker.Price;
+                }
+
+                temporaryTimebox++;
+            }
+            return Task.CompletedTask;
+        }
     }
 }
