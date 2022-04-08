@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "market-price-reducer-service", "market-price-reducer-service\market-price-reducer-service.csproj", "{E9BD1A50-295F-4AFF-9A21-2853FC79464B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{E9BD1A50-295F-4AFF-9A21-2853FC79464B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{BE64CBA5-56E0-416D-97FC-5C3135E5F1B6}"
 EndProject
