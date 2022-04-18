@@ -1,3 +1,4 @@
+using Application.Extensions;
 using Infrastructure;
 using MassTransit;
 using Serilog;
@@ -12,6 +13,7 @@ try
 {
     // Add services to the container.
     builder.Services.AddControllers();
+    builder.Services.AddApplication(builder.Configuration);
     builder.Services.AddOptions();
     builder.Services.AddInfrastructure(builder.Configuration);
 

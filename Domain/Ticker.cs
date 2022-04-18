@@ -12,7 +12,7 @@ namespace Domain
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
+        public ObjectId Id { get; set; }
         public string BrokerName { get; set; }
         public string Symbol { get; set; }
         public decimal Price { get; set; }

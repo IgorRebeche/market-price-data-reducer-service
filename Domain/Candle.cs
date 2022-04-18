@@ -1,10 +1,5 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
@@ -17,7 +12,9 @@ namespace Domain
         public decimal ClosePrice { get; set; }
         public decimal HighPrice { get; set; }
         public decimal LowPrice { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public int TickerCount { get; set; }
+        public DateTime Date{ get; set; }
+        public long TimeStamp { get; set; }
         public decimal Volume { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace market_price_reducer_service
+namespace WebApi
 {
     public class WeatherForecast
     {
