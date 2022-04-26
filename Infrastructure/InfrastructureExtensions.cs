@@ -4,6 +4,8 @@ using Infrastructure.Options;
 using Domain.Repositories;
 using Infrastructure.Repositories;
 using Infrastructure.Database.MongoDb;
+using Infrastructure.Services.Ticker;
+using Application.Services.Ticker;
 
 namespace Infrastructure
 {
@@ -13,8 +15,11 @@ namespace Infrastructure
         {
             config.AddTimeframeOptions(services);
             config.AddAssetOptions(services);
-            services.AddScoped<ITickerRepository, TickerRepository>();
+            config.AddResilienceOptions(services);
+
+            services.AddTickerApi(config);
             services.AddScoped<ICandleRepository, CandleRepository>();
+            services.AddScoped<ITickerService, TickerService>();
             services.Configure<MarketPriceLakeDatabaseConfiguration>(config.GetSection("MarketPriceLakeDatabase"));
             return services;
         }

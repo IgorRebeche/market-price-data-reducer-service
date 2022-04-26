@@ -7,17 +7,18 @@ using AutoFixture;
 using Application.Common;
 using FluentAssertions;
 using Domain.Options;
+using Application.Services.Ticker;
 
 namespace UnitTests
 {
     public class CandleGenerationHelperTest
     {
-        private Mock<IOptions<List<Timeframe>>> _timeFrameOptions;
+        private Mock<IOptions<List<TimeframeOptions>>> _timeFrameOptions;
         private Fixture _fixture;
 
         public CandleGenerationHelperTest()
         {
-            _timeFrameOptions = new Mock<IOptions<List<Timeframe>>>();
+            _timeFrameOptions = new Mock<IOptions<List<TimeframeOptions>>>();
             _fixture = new Fixture();
         }
 
@@ -25,8 +26,8 @@ namespace UnitTests
         public void ShouldGenerateCandlesSuccessfully()
         {
             //var timeFrameOptions = _fixture.Create<List<Timeframe>>();
-            var timeFrameOptions = new List<Timeframe>();
-            timeFrameOptions.Add(new Timeframe { TimeframeInSeconds = 5, TimeframeName = "Custom"});
+            var timeFrameOptions = new List<TimeframeOptions>();
+            timeFrameOptions.Add(new TimeframeOptions { TimeframeInSeconds = 5, TimeframeName = "Custom"});
             _timeFrameOptions.Setup(x => x.Value).Returns(timeFrameOptions);
 
             var tickers = GetTickers(new List<decimal> { 40, 120, 90, 30, 100, 75, 60 });
@@ -43,8 +44,8 @@ namespace UnitTests
         public void ShouldNotGenerateCandles()
         {
             // Arrange
-            var timeFrameOptions = new List<Timeframe>();
-            timeFrameOptions.Add(new Timeframe { TimeframeInSeconds = 5, TimeframeName = "Custom" });
+            var timeFrameOptions = new List<TimeframeOptions>();
+            timeFrameOptions.Add(new TimeframeOptions { TimeframeInSeconds = 5, TimeframeName = "Custom" });
             _timeFrameOptions.Setup(x => x.Value).Returns(timeFrameOptions);
 
             // Act
@@ -55,13 +56,13 @@ namespace UnitTests
             // Assert
             candle.Should().BeEmpty();
         }
-        private List<Ticker> GetTickers(List<decimal> fakePrices)
+        private List<TickerResponse> GetTickers(List<decimal> fakePrices)
         {
-            var tickers = new List<Ticker>();
+            var tickers = new List<TickerResponse>();
             var i = 0;
             fakePrices.ForEach(x =>
             {
-                tickers.Add(new Ticker { BrokerName = "Binance", Symbol = "BTCUSD", Price = x, Volume = 100, Timestamp = 100 + i });
+                tickers.Add(new TickerResponse { BrokerName = "Binance", Symbol = "BTCUSD", Price = x, Volume = 100, Timestamp = 100 + i });
                 i++;
             });
             return tickers;

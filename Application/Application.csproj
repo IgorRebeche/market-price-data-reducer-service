@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="MassTransit" Version="7.3.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
@@ -13,5 +14,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Domain\Domain.csproj" />
+		<ProjectReference Include="..\Events\Events.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Tasks\" />
 	</ItemGroup>
 </Project>

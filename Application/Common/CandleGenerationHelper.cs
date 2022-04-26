@@ -1,11 +1,12 @@
-﻿using Domain;
+﻿using Application.Services.Ticker;
+using Domain;
 using Domain.Options;
 
 namespace Application.Common
 {
     public class CandleGenerationHelper
     {
-        public List<Candle> ProcessCandles(Timeframe timeframe, List<Ticker> tickers)
+        public List<Candle> ProcessCandles(TimeframeOptions timeframe, List<TickerResponse> tickers)
         {
             var tickerTimeRangeInSeconds = tickers.Last().Timestamp - tickers.First().Timestamp;
             var tickersRangeIsShorterThanTimeFrame = tickerTimeRangeInSeconds < timeframe.TimeframeInSeconds;
@@ -46,6 +47,7 @@ namespace Application.Common
 
                     };
                     tickerCount = 0;
+                    candles[actualCandleCount - 1].BrokerName = actualTicker.BrokerName;
                     candles[actualCandleCount - 1].TimeStamp = tmpStartTime;
                     candles[actualCandleCount - 1].Date = candleTime;
                     candles[actualCandleCount - 1].OpenPrice = candles[actualCandleCount - 1].HighPrice = candles[actualCandleCount - 1].LowPrice = actualTicker.Price;

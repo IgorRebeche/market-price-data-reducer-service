@@ -2,7 +2,6 @@ using Application.Extensions;
 using Infrastructure;
 using MassTransit;
 using Serilog;
-using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
@@ -17,29 +16,22 @@ try
     builder.Services.AddOptions();
     builder.Services.AddInfrastructure(builder.Configuration);
 
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
     // Add Masstransit
-    // builder.Services.AddMassTransit(x =>
-    // {
-    //     //x.AddConsumer<TickerCollectedConsumer>();
-    //     x.UsingRabbitMq((context, cfg) =>
-    //     {
-    //         cfg.Host("localhost", "/", h =>
-    //         {
-    //             h.Username("guest");
-    //             h.Password("guest");
-    //         });
-
-    //         //cfg.ReceiveEndpoint("Events:ITickerCollected", e =>
-    //         //{
-    //         //    e.Consumer<TickerCollectedConsumer>(context);
-    //         //});
-    //     });
-    // });
-    // builder.Services.AddMassTransitHostedService();
+    builder.Services.AddMassTransit(x =>
+    {
+         x.UsingRabbitMq((context, cfg) =>
+        {
+            cfg.Host(builder.Configuration.GetSection("RabbitMqConfigurationOptions:Host").Value, "/", h =>
+            {
+                h.Username(builder.Configuration.GetSection("RabbitMqConfigurationOptions:Username").Value);
+                h.Password(builder.Configuration.GetSection("RabbitMqConfigurationOptions:Password").Value);
+            });
+         });
+    });
+    builder.Services.AddMassTransitHostedService();
 
     builder.Host.UseSerilog((ctx, lc) => lc
         .WriteTo.Console()
@@ -50,11 +42,11 @@ try
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
+        Log.Information("Development mode enabled!");
     }
-
-    //app.UseHttpsRedirection();
+    
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
     app.UseAuthorization();
 

@@ -16,11 +16,10 @@ namespace WebApi.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IOptions<List<Timeframe>> _timeFrameOptions;
+        private readonly IOptions<List<TimeframeOptions>> _timeFrameOptions;
         private readonly ICreateCandleStickUseCase _createCandleStickUseCase;
-        private readonly ITickerRepository _tickerRepository;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IOptions<List<Timeframe>> timeFrameOptions, ICreateCandleStickUseCase createCandleStickUseCase)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IOptions<List<TimeframeOptions>> timeFrameOptions, ICreateCandleStickUseCase createCandleStickUseCase)
         {
             _logger = logger;
             _timeFrameOptions = timeFrameOptions;

@@ -1,6 +1,6 @@
 namespace Domain.Options
 {
-    public class Timeframe
+    public class TimeframeOptions
     {
         public string TimeframeName { get; set; }
 

@@ -8,6 +8,7 @@ namespace Domain
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
+        public string BrokerName { get; set; }
         public decimal OpenPrice { get; set; }
         public decimal ClosePrice { get; set; }
         public decimal HighPrice { get; set; }

@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -11,13 +11,30 @@
   "profiles": {
     "market_price_reducer_service": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7121;http://localhost:5121",
+      "environmentVariables": {},
+      "applicationUrl": "http://localhost:5003",
+      "dotnetRunMessages": true
+    },
+    "market_price_reducer_service_dsv": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:5003",
+      "dotnetRunMessages": true
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:5003/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "http://localhost:5003"
+      },
+      "distributionName": ""
     },
     "IIS Express": {
       "commandName": "IISExpress",
