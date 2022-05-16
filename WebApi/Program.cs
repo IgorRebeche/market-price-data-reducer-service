@@ -2,6 +2,7 @@ using Application.Extensions;
 using Infrastructure;
 using MassTransit;
 using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()

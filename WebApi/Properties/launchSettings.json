@@ -14,7 +14,17 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {},
-      "applicationUrl": "http://localhost:5003",
+      "applicationUrl": "http://localhost:5000",
+      "dotnetRunMessages": true
+    },
+    "market_price_reducer_service_docker": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Docker"
+      },
+      "applicationUrl": "http://localhost:5000",
       "dotnetRunMessages": true
     },
     "market_price_reducer_service_dsv": {
@@ -46,3 +56,4 @@
     }
   }
 }
+
